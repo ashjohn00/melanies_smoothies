@@ -8,7 +8,6 @@ st.write(
     """Choose the fruits you want in your custom smoothie!"""
 )
 
-
 name_on_the_order = st.text_input('Name on Smoothie:')
 st.write('The name on your smoothie will be:', name_on_the_order)
 
@@ -22,7 +21,6 @@ ingredients_list = st.multiselect(
     my_dataframe ,
     max_selections=5
     )
-
 
 if ingredients_list:
 
@@ -45,3 +43,9 @@ if ingredients_list:
         session.sql(my_insert_stmt).collect()
         
         st.success('Your Smoothie is ordered!', icon="✅")
+
+
+# new section to display fruityvice nutrition information
+import requests
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+st.text(fruityvice_response)
